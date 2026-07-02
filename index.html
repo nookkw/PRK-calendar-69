@@ -993,12 +993,15 @@
   ];
 
   // ===== STATE =====
-  let currentYear = 2026;
-  let currentMonth = 4; // May (0-indexed) = พฤษภาคม 
-  let selectedDate = null;
-  let selectedCat = 'academic';
-  let selectedModalCat = 'academic';
-  let events = [...DEFAULT_HOLIDAYS];
+const today = new Date();
+  
+let currentYear = today.getFullYear();
+let currentMonth = today.getMonth();
+
+let selectedDate = null;
+let selectedCat = 'academic';
+let selectedModalCat = 'academic';
+let events = [...DEFAULT_HOLIDAYS];
   let realtimeReady = false;
 
   function saveEvents() { /* ใช้ Firebase Firestore แล้ว ไม่ใช้ localStorage */ }
@@ -1370,11 +1373,22 @@
     renderAllEvents, exportCSV, printAllEvents, deleteEventByKey
   });
 
-  initSelects();
-  renderCalendar();
-  renderDayEvents();
-  renderAllEvents();
-  loadRealtimeEvents();
+selectedDate = toDateKey(
+  today.getFullYear(),
+  today.getMonth(),
+  today.getDate()
+);
+
+initSelects();
+
+document.getElementById('inputDay').value = today.getDate();
+document.getElementById('inputMonth').value = today.getMonth();
+document.getElementById('inputYear').value = today.getFullYear();
+
+renderCalendar();
+renderDayEvents();
+renderAllEvents();
+loadRealtimeEvents();
 </script>
 </body>
 </html>
