@@ -1086,7 +1086,13 @@ let events = [...DEFAULT_HOLIDAYS];
     const todayKey = toDateKey(today.getFullYear(), today.getMonth(), today.getDate());
 
     document.getElementById('calMonthTitle').textContent = `${MONTHS_TH[monthIdx]} ${thaiYear}`;
-    document.getElementById('calMonthSub').textContent = `${MONTHS_TH[monthIdx]} ${year} - ปีการศึกษา ${thaiYear}`;
+    
+    let academicYear = (monthIdx >= 4)
+      ? year + 543
+      : year + 542;
+    document.getElementById('calMonthSub').textContent =
+    `${MONTHS_TH[monthIdx]} ${year} - ปีการศึกษา ${academicYear}`;
+    
     document.getElementById('headerMonth').value = monthIdx;
 
     const grid = document.getElementById('daysGrid');
