@@ -1087,7 +1087,7 @@ let events = [...DEFAULT_HOLIDAYS];
 
     document.getElementById('calMonthTitle').textContent = `${MONTHS_TH[monthIdx]} ${thaiYear}`;
     
-    let academicYear = (monthIdx >= 4)
+    let academicYear = getAcademicYear(year, monthIdx);
       ? year + 543
       : year + 542;
     document.getElementById('calMonthSub').textContent =
